@@ -1,0 +1,246 @@
+<!-- <div class="row page-titles">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="javascript:void(0)">App</a></li>
+        <li class="breadcrumb-item  active"><a href="/clientes">Configuración</a></li>
+    </ol>
+</div> -->
+<!-- Aquí mostramos el mensaje de error si existe -->
+<!-- <% if (mensaje) { %>
+    <div style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 20px;">
+        <%= mensaje %>
+    </div>
+    <% } %> -->
+
+<div class="col-xl-12 col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Datos de Empresa(CIA)</h4>
+        </div>
+        <div class="card-body">
+            <div class="basic-form">
+                <form action="/compania/edit" method="POST" enctype="multipart/form-data">
+
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label class="mb-1"><strong>Elige los Tipos de Cotización con los que operas:
+                                </strong></label>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                    <% if(compania.indprd==1) { %>
+                                        <input type="checkbox" id="indprd" name="indprd" class="form-check-input"
+                                            value="<%= compania.indprd %>" checked>Productos
+                                        <% } else { %>
+                                            <input type="checkbox" id="indprd" name="indprd" class="form-check-input"
+                                                value="<%= compania.indprd %>">Productos
+                                            <% } %>
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label">
+                                    <% if(compania.indser==1) { %>
+                                        <input type="checkbox" id="indser" name="indser" class="form-check-input"
+                                            value="<%= compania.indser %>" checked>Servicios
+                                        <% } else { %>
+                                            <input type="checkbox" id="indser" name="indser" class="form-check-input"
+                                                value="<%= compania.indser %>">Servicios
+                                            <% } %>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Nombre o Razon Social CIA</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre"
+                                value="<%= compania.nombre %>" required>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <label class="form-label">RUC CIA</label>
+                            <input type="text" class="form-control" id="documento" name="documento"
+                                value="<%= compania.documento %>" required>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <label class="form-label">Telefonos CIA</label>
+                            <input type="text" class="form-control" id="telefono" name="telefono"
+                                value="<%= compania.telefono %>" required>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Direccion CIA</label>
+                            <input type="text" class="form-control" id="direccion" name="direccion"
+                                value="<%= compania.direccion %>" required>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Correo</label>
+                            <input type="email" class="form-control" id="email" name="email" required
+                                value="<%= compania.email %>" required>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Rubro Industrial</label>
+                            <select class="dropdown-groups" id="idrub" name="idrub">
+                                <% rubros.forEach(rubro=> { %>
+                                    <optgroup label="<%=rubro.nombre %>">
+                                        <% rubrosh.forEach(rubrohijo=> { %>
+                                            <% if(rubrohijo.idpadre==rubro.id) { %>
+                                                <option value="<%= rubrohijo.id %>" <%=rubrohijo.id===compania.idrub
+                                                    ? 'selected' : '' %> >
+                                                    <%= rubrohijo.nombre %>
+                                                </option>
+                                                <% }%>
+                                                    <% }); %>
+                                                        <option valule="0">Otros</option>
+                                    </optgroup>
+                                    <% }); %>
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <label class="mb-1"><strong>% de IGV</strong></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-text">
+                                    <% if(compania.indimp==1) { %>
+                                        <input type="checkbox" id="indimp" name="indimp" value="1" checked>
+                                        <% } else { %>
+                                            <input type="checkbox" id="indimp" name="indimp" value="1">
+                                            <% } %>
+                                </div>
+                                <input type="text" class="form-control" id="mtoimp" name="mtoimp"
+                                    value="<%= compania.mtoimp %>">
+                            </div>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <label class="form-label">Nro Colaboradores</label>
+                            <input type="text" class="form-control" id="cantusu" name="cantusu"
+                                value="<%= compania.cantusu %>">
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <label class="form-label">Tipo Vigencia</label>
+                            <select id="tipovig" name="tipovig" class="default-select form-control wide">
+                                <% tipovig.forEach(tipov=> { %>
+                                    <option value="<%= tipov.id %>" <%=tipov.id===compania.tipovig ? 'selected' : '' %>
+                                        >
+                                        <%= tipov.nombre %>
+                                    </option>
+                                    <% }) %>
+                                        <!-- <option value="1">Anual</option>
+                                <option value="2">Mensual</option>
+                                <option value="3">Prueba 30 dias</option> -->
+                            </select>
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <label class="form-label">Inicio de Vigencia</label>
+                            <input type="date" class="form-control" id="fechavig" name="fechavig"
+                                value="<%= compania.fechavig %>" disabled>
+                            <!-- <input type="hidden" id="fechavig" name="fechavig"
+                                value="<%= compania.fechavig %>"> -->
+                        </div>
+                        <div class="mb-3 col-md-3">
+                            <label class="form-label">Fin de Vigencia</label>
+                            <input type="date" class="form-control" id="fechavigf" name="fechavigf"
+                                value="<%= fechavigTerform %>" disabled>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Sube el logo de tu empresa</label>
+                            <input class="form-control" type="file" accept="image/*" id="imagen" name="imagen">
+                            <input type="hidden" id="imagen_u" name="imagen_u" value="<%= compania.imagen %>">
+                            <img id="preview" src="<%= compania.imagen %>" alt="Vista previa"
+                                class="img-thumbnail d-none" width="200">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Logo de tu empresa</label>
+                            <div id="lightgallery" class="row">
+                                <a href="<%= compania.imagen %>" data-exthumbimage="<%= compania.imagen %>"
+                                    data-src="<%= compania.imagen %>" class="col-lg-3 col-md-6 mb-4">
+                                    <img src="<%= compania.imagen %>" class="rounded" alt="" style="width:100%;">
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Pagina Web</label>
+                            <input type="text" class="form-control" id="pagweb" name="pagweb"
+                                value="<%= compania.pagweb %>">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">FaceBook</label>
+                            <input type="text" class="form-control" id="facebook" name="facebook"
+                                value="<%= compania.facebook %>">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Instagram</label>
+                            <input type="text" class="form-control" id="instagram" name="instagram"
+                                value="<%= compania.instagram %>">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Linkedid</label>
+                            <input type="text" class="form-control" id="linkedid" name="linkedid"
+                                value="<%= compania.linkedid %>">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Actualizar datos de la CIA</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- sweetalert -->
+<script src="/theme/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+<script src="/theme/js/plugins-init/sweetalert.init.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Obtener la fecha actual
+    const fechaHoy = new Date();
+
+    // Formatear la fecha en formato YYYY-MM-DD
+    const anio = fechaHoy.getFullYear();
+    const mes = ("0" + (fechaHoy.getMonth() + 1)).slice(-2); // Los meses empiezan en 0, así que sumamos 1
+    const dia = ("0" + fechaHoy.getDate()).slice(-2);
+
+    // Crear la cadena de fecha en el formato YYYY-MM-DD
+    const fechaFormateada = `${anio}-${mes}-${dia}`;
+
+    document.getElementById("indimp").addEventListener("change", function () {
+        const campoTexto = document.getElementById("mtoimp");
+        campoTexto.disabled = !this.checked; // Habilita si está marcado, deshabilita si no
+
+        document.getElementById("fechavig").disabled = true;
+    });
+
+    document.getElementById('imagen').addEventListener('change', function (event) {
+        const file = event.target.files[0]; // Obtiene el archivo seleccionado
+
+        if (file) {
+            const reader = new FileReader(); // Crea un lector de archivos
+
+            reader.onload = function (e) {
+                const preview = document.getElementById('preview');
+                preview.src = e.target.result; // Asigna la imagen cargada al src
+                preview.classList.remove('d-none'); // Muestra la imagen
+            };
+
+            reader.readAsDataURL(file); // Lee el archivo como DataURL
+        }
+    });
+
+    // Recibir el mensaje desde el servidor
+    let mensaje = "<%= mensaje %>";
+    let tipo = "<%= tipo %>";
+
+    // Si hay un mensaje, mostrarlo con SweetAlert
+    if (mensaje) {
+        Swal.fire({
+            title: tipo === "success" ? "Éxito" : "Error",
+            text: mensaje,
+            icon: tipo,
+            confirmButtonText: "OK"
+        });
+    }
+</script>

@@ -1,0 +1,276 @@
+<div class="row page-titles">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="javascript:void(0)">App</a></li>
+        <li class="breadcrumb-item  active"><a href="/cotizaciones">Cotización</a></li>
+    </ol>
+</div>
+<div class="row">
+    <div class="col-xl-12 col-xxl-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Registra tu Cotización</h4>
+            </div>
+            <div class="card-body">
+                <form id="cabecera_cot">
+                    <input type="hidden" name="idcia" id="idcia" value="<%= idcia %>">
+                    <div id="smartwizard" class="form-wizard order-create">
+                        <ul class="nav nav-wizard">
+                            <li><a class="nav-link" href="#Datos">
+                                    <span>1</span>
+                                </a></li>
+                            <li><a class="nav-link" href="#Detalle">
+                                    <span>2</span>
+                                </a></li>
+                            <li><a class="nav-link" href="#Pago">
+                                    <span>3</span>
+                                </a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="Datos" class="tab-pane" role="tabpanel">
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="mb-3 col-md-6">
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Nro Cotización</label>
+                                                <input type="text" class="form-control" id="numcot" name="numcot">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label class="form-label">Fecha</label>
+                                            <input type="date" class="form-control" id="fecha" name="fecha"
+                                                disabled><br>
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label class="text-label form-label">Elige Cliente<span class="required">*</span></label>
+                                            <select id="single-select" name="idcli">
+                                                <% clientes.forEach(cliente=> { %>
+                                                    <option value="<%= cliente.id %>">
+                                                        <%= cliente.nombre %>
+                                                    </option>
+                                                    <% }); %>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label class="text-label form-label">Moneda<span class="required">*</span></label>
+                                            <select id="idmon" name="idmon" class="default-select form-control wide">
+                                                <% monedas.forEach(moneda=> { %>
+                                                    <option value="<%= moneda.id %>">
+                                                        <%= moneda.nombre %>
+                                                    </option>
+                                                    <% }); %>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label class="form-label">Vendedor</label>
+                                            <input type="text" class="form-control" id="iduser" name="iduser" value="<%= asesor.comercial; %>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="Detalle" class="tab-pane" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-xl-4 col-xxl-6 col-6">
+                                        <div class="form-check custom-checkbox mb-3">
+                                            <input type="checkbox" class="form-check-input" id="customCheckBox1">
+                                            <label class="form-check-label" for="customCheckBox1">Servicio</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-5 mb-2">
+                                        <label class="text-label form-label">Descripción</label>
+                                        <select id="single-select_p">
+                                            <option value="0">Elige un Producto</option>
+                                            <% productos.forEach(producto=> { %>
+                                                <option value="<%= producto.id %>">
+                                                    <%= producto.nombre %>
+                                                </option>
+                                                <% }); %>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 col-md-1">
+                                        <div class="mb-3">
+                                            <label class="text-label form-label">Precio</label>
+                                            <input type="text" class="form-control" id="preciounit">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 col-md-1">
+                                        <div class="mb-3">
+                                            <label class="text-label form-label">Variación</label>
+                                            <input type="text" class="form-control" id="preciocot">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3 col-md-2">
+                                        <label class="text-label form-label">U.Medida</label>
+                                        <select id="umedida" class="default-select form-control wide">
+                                            <% medidas.forEach(medida=> { %>
+                                                <option value="<%= medida.id %>">
+                                                    <%= medida.nombre %>
+                                                </option>
+                                                <% }); %>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 col-md-1">
+                                        <div class="mb-3">
+                                            <label class="text-label form-label">Cantidad</label>
+                                            <input type="text" class="form-control" id="cantidad" value="0" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 col-md-1">
+                                        <div class="mb-3">
+                                            <label class="text-label form-label">Importe</label>
+                                            <input type="text" class="form-control" id="subtotal" value="0.00"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 col-md-1">
+                                        <div class="mb-3">
+                                            <label class="text-label form-label">Agregar</label>
+                                            <a href="#" id="agregarProducto" class="btn btn-primary">+</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="card">
+                                            <!-- <div class="card-header border-0 pb-0">
+                                                <h5 class="card-title">Productos</h5>
+                                            </div> -->
+                                            <div class="card-body" style="max-height:300px; overflow-y: auto;">
+                                                <div class="table-responsive">
+                                                    <table id="tabla-productos" class="table table-responsive-md">
+                                                        <thead>
+                                                            <tr>
+
+                                                                <th>Producto/Descripción</th>
+                                                                <th>Cantidad</th>
+                                                                <th>Um</th>
+                                                                <th>Precio</th>
+                                                                <th>Importe</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer border-0 pt-0">
+                                                <p class="card-link float-end">Importe Total</p>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <br>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div id="Pago" class="tab-pane" role="tabpanel">
+                                <div class="row">
+                                    <div class="mb-3 col-md-2">
+                                        <div class="mb-3">
+                                            <label class="text-label form-label">Sub total</label>
+                                            <input type="text" class="form-control" id="subtotcot" name="subtotcot">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 col-md-2">
+                                        <div class="mb-3">
+                                            <label class="text-label form-label">Impuesto IGV</span></label>
+                                            <input type="text" class="form-control" id="igvcot" name="igvcot">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 col-md-2">
+                                        <div class="mb-3">
+                                            <label class="text-label form-label">Total a Pagar</span></label>
+                                            <input type="text" class="form-control" id="totcot" name="totcot">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Forma de Pago</label>
+                                        <select id="tipopago" name="tipopago" class="default-select form-control wide">
+                                            <option value="0">Sin Info</option>
+                                            <% formapagos.forEach(formapago=> { %>
+                                                <option value="<%= formapago.id %>">
+                                                    <%= formapago.nombre %>
+                                                </option>
+                                                <% }); %>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Forma de Entrega</label>
+                                        <select id="condicionentrega" name="condicionentrega" class="default-select form-control wide">
+                                            <option value="0">Sin Info</option>
+                                            <% formaentregas.forEach(formaentrega=> { %>
+                                                <option value="<%= formaentrega.id %>">
+                                                    <%= formaentrega.nombre %>
+                                                </option>
+                                                <% }); %>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Fecha de entrega</label>
+                                        <input type="date" class="form-control" id="fechaentrega" name="fechaentrega"><br>
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Descripción / Observaciones</label>
+                                        <textarea class="form-control" rows="9" id="descripcion" name="descripcion"></textarea>
+                                    </div>
+
+                                    <!-- <div class="mb-3 col-md-2">
+                                        <button id="enviarCotizacion" class="btn btn-primary">Procesar Cotizacion</button>
+                                    </div> -->
+                                    <!-- <div class="mb-3 col-md-2">
+                                        <a href="/cotizaciones/generaPDFprevia" class="btn btn-primary">Vista Previa PDF</a>
+                                    </div> -->
+                                    <!-- <div class="mb-3 col-md-2">
+                                        <a href="/cotizaciones/generaPDFdownload/30" target="_blank" class="btn btn-primary">Generar PDF</a>
+                                    </div> -->
+                                    <div class="sweetalert mt-5">
+                                        <button id="btnEnviarCot" class="btn btn-primary btn sweet-confirm">Procesar Cotizacion</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- sweetalert -->
+<script src="/theme/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+<script src="/theme/js/plugins-init/sweetalert.init.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    // Obtener la fecha actual
+    const fechaHoy = new Date();
+
+    // Formatear la fecha en formato YYYY-MM-DD
+    const anio = fechaHoy.getFullYear();
+    const mes = ("0" + (fechaHoy.getMonth() + 1)).slice(-2); // Los meses empiezan en 0, así que sumamos 1
+    const dia = ("0" + fechaHoy.getDate()).slice(-2);
+
+    // Crear la cadena de fecha en el formato YYYY-MM-DD
+    const fechaFormateada = `${anio}-${mes}-${dia}`;
+
+    // Asignar la fecha formateada al valor del input
+    document.getElementById("fecha").value = fechaFormateada;
+    document.getElementById("numcot").disabled = true;
+    document.getElementById("preciounit").disabled = true;
+    document.getElementById("subtotal").disabled = true;
+    document.getElementById("iduser").disabled = true;
+</script>
+<script src="/public/js/createCot.js"></script>

@@ -1,0 +1,72 @@
+
+<div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <a href="/usuarios/create" class="btn btn-primary">Crear Nuevo Usuario</a>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Usuario Listado</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table id="example3" class="display" style="min-width: 845px">
+              <thead>
+                <tr>
+                  <th>Usuario</th>
+                  <th>Nombres</th>
+                  <th>Correo</th>
+                  <th>Telefono</th>
+                  <th>Perfil</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% users.forEach(user=> { %>
+                  <tr>
+                    <td>
+                      <%= user.usuario %>
+                    </td>
+                    <td>
+                      <%= user.nombres %>
+                    </td>
+                    <td>
+                      <%= user.email %>
+                    </td>
+                    <td>
+                      <%= user.telefono %>
+                    </td>
+                    <td>
+                      <%= user.perfil %>
+                    </td>
+                    <td>
+                      <%= user.estado %>
+                    </td>
+                    <td>
+                      <div class="d-flex">
+                        <a href="/usuarios/edit/<%= user.id %>" class="btn btn-primary shadow btn-xs sharp me-1"><i
+                            class="fa fa-pencil-alt"></i></a>
+                        <a href="/usuarios/delete/<%= user.id %>" class="btn btn-danger shadow btn-xs sharp"><i
+                            class="fa fa-trash"></i></a>
+                      </div>
+                    </td>
+                  </tr>
+                  <% }) %>
+  
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>

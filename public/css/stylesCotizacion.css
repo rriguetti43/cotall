@@ -1,0 +1,152 @@
+/* Reset de márgenes y paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  .container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Título principal de la sección */
+  h1 {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 40px;
+    color: #007bff;
+  }
+  
+  /* Sección de formulario para crear cotización */
+  .form-cotizacion {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Contenedor de los campos de formulario */
+  .field-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  
+  /* Estilo para los campos de formulario */
+  .field-group label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .field-group input, 
+  .field-group select, 
+  .field-group textarea {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Área de texto */
+  textarea {
+    resize: vertical;
+    height: 120px;
+  }
+  
+  /* Estilos para los botones */
+  button {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  button:hover {
+    background-color: #218838;
+  }
+  
+  /* Estilo para los botones secundarios (cancelar, etc.) */
+  button.cancel {
+    background-color: #dc3545;
+  }
+  
+  button.cancel:hover {
+    background-color: #c82333;
+  }
+  
+  /* Sección de detalles de los productos dentro de la cotización */
+  .productos-list {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .productos-list h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #007bff;
+  }
+  
+  .productos-list table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .productos-list table th, 
+  .productos-list table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .productos-list table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .productos-list table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .productos-list table tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+  
+  /* Botón para agregar productos */
+  .add-producto-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .add-producto-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  

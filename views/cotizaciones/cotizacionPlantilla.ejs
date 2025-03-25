@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="http://localhost:3000/theme/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost:3000/theme/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="http://localhost:3000/theme/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://localhost:3000/theme/css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #969ba0;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            background-color: white;
+        }
+
+        .borderedondo {
+            border-collapse: separate;
+            /* permite bordes redondeados */
+            border: 1px solid #333;
+            border-radius: 10px;
+            overflow: hidden;
+            /* para que el redondeo funcione bien */
+        }
+
+        .cotizacion-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 2px solid #2c3e50;
+            border-radius: 10px;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            margin: 20px 0;
+        }
+
+        .cotizacion-table th {
+            background-color: #34495e;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 2px solid #2c3e50;
+        }
+
+        .cotizacion-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .cotizacion-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Opcional: zebra rows */
+        .cotizacion-table tr:nth-child(even) td {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="width: 100%; min-height: 29.6cm; border: 0px solid black; padding: 20px;">
+
+
+        <div style="padding: 10px;">
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <tr>
+                    <td style="width: 70%; padding: 10px;">
+                        <img class="logo-compact" width="150" src="http://localhost:3000<%= data.logo_cia %>" alt="">
+                        <br>
+                        <span> <strong>
+                                Asesor Comercial: <%= data.agente_nombre %>
+                            </strong></span><br>
+                        <small class="text-muted">
+                            Correo: <%= data.agente_email %>
+                        </small><br>
+                        <small class="text-muted">
+                            Telefono: <%= data.agente_telefono %>
+                        </small>
+                    </td>
+                    <td style="width: 30%; padding: 10px; text-align: center;">
+                        <div style="padding: 10px; font-weight: bold;" class="borderedondo">
+                            <% const fechaObj=new Date(data.fecha); const
+                                dia=fechaObj.getDate().toString().padStart(2, '0' ); const mes=(fechaObj.getMonth() +
+                                1).toString().padStart(2, '0' ); const año=fechaObj.getFullYear(); %>
+                                <span style="float: right;">
+                                    <strong>COTIZACIÓN DE VENTA</strong>
+                                    <%= data.numcot %>
+                                        <br>
+
+                                        <%= dia %>/<%= mes %>/<%= año %>
+                                </span>
+                        </div>
+                        <!-- <img src="images/qr.png" alt="" class="img-fluid width110"> -->
+                    </td>
+                </tr>
+            </table>
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 50%; vertical-align: top; padding: 10px;">
+                        <h6>
+                            <%= data.nombre_cia %>
+                        </h6>
+                        <div><strong>RUC: </strong>
+                            <%= data.ruc_cia %>
+                        </div>
+                        <div><strong>Dirección: </strong>
+                            <%= data.direccion_ruc %>
+                        </div>
+                        <div><strong>Correo: </strong>
+                            <%= data.email_cia %>
+                        </div>
+                        <div><strong>Teléfonos: </strong>
+                            <%= data.telefono_cia %>
+                        </div>
+                    </td>
+                    <td style="width: 50%; vertical-align: top; padding: 10px;">
+                        <h6><strong>Cliente: </strong>
+                            <%= data.nombres_cli %>
+                        </h6>
+                        <div><strong>RUC: </strong>
+                            <%= data.ruc_cli %>
+                        </div>
+                        <div><strong>Contacto: </strong>
+                            <%= data.contac_cli %>
+                        </div>
+                        <div><strong>Dirección: </strong>
+                            <%= data.direccion_cli %>
+                        </div>
+                        <div><strong>Correo: </strong>
+                            <%= data.email_cli %>
+                        </div>
+                        <div><strong>Telefóno: </strong>
+                            <%= data.telcontac_cli %>
+                        </div>
+                    </td>
+                </tr>
+                <small> Por la Presente nos es grato hacerle llegar nuestra cotización</small>
+            </table>
+            <div style="width: 100%;">
+                <table class="cotizacion-table">
+                    <thead>
+                        <tr>
+                            <th class="center">Cantidad</th>
+                            <th>Item</th>
+                            <th>Descripción</th>
+                            <th class="center">U.Medida</th>
+                            <th class="right">Precio</th>
+                            <th class="right">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% datadet.forEach(detalle=> { %>
+                            <tr>
+                                <td class="right">
+                                    <%= detalle.cantidad %>
+                                </td>
+                                <td class="left strong">
+                                    <%= detalle.codigo %>
+                                </td>
+                                <td class="left">
+                                    <%= detalle.nombre %>
+                                </td>
+                                <td class="center">
+                                    <%= detalle.corto %>
+                                </td>
+                                <td class="right">
+                                    <%= detalle.preciounit %>
+                                </td>
+                                <td class="right">
+                                    <%= detalle.subtotal %>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+            </div>
+
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <tr>
+                    <td style="width: 50%;">
+                        <table class="table table-clear " style="width: 100%;">
+                            <tbody>
+                                <tr>
+                                    <td><strong class="text-black">Moneda </strong></td>
+                                    <td class="left">
+                                        <%= data.moneda %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong class="text-black">Forma Pago </strong></td>
+                                    <td class="left">
+                                        <%= data.formapago %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong class="text-black">Forma Entrega</strong></td>
+                                    <td class="left">
+                                        <%= data.formaentrega %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong class="text-black">Cuentas de Banco</strong></td>
+                                    <td class="left">
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td style="width: 50%; text-align: right;">
+                        <table class="table table-clear borderedondo" style="width: 100%;">
+                            <tbody>
+                                <tr style="border-bottom: 2px solid black;">
+                                    <td><strong class="text-black">Subtotal</strong></td>
+                                    <td class="right">
+                                        <%= data.subtotcot %>
+                                    </td>
+                                </tr>
+                                <tr style="border-bottom: 2px solid black;">
+                                    <td><strong class="text-black">IGV (18%)</strong></td>
+                                    <td class="right">
+                                        <%= data.igvcot %>
+                                    </td>
+                                </tr>
+                                <tr style="border-bottom: 2px solid black;">
+                                    <td><strong class="text-black">Total</strong></td>
+                                    <td class="right"><strong class="text-black">
+                                            <%= data.totcot %>
+                                        </strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <tr>
+                    <td style="width: 100%;">
+                        <table class="table table-clear borderedondo" style="width: 100%;">
+                            <tbody>
+                                <tr>
+                                    <td><strong class="text-black">Detalles de la Cotización </strong></td>
+                                    <td class="left">
+                                        <%= data.descripcion %>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="http://localhost:3000/theme/vendor/global/global.min.js"></script>
+    <script src="http://localhost:3000/theme/vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="http://localhost:3000/theme/theme/js/custom.min.js"></script>
+    <script src="http://localhost:3000/theme/theme/js/deznav-init.js"></script>
+</body>
+
+</html>

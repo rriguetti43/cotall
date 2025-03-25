@@ -1,0 +1,96 @@
+
+  
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+            <h2 class="mb-4">Panel de Administración - Licencias</h2>
+            <form class="row g-3 mb-4" method="get" action="/admin/licencias">
+                <div class="col-md-4">
+                  <input type="text" name="usuario" class="form-control" placeholder="Buscar por usuario">
+                </div>
+                <div class="col-md-4">
+                  <input type="date" name="expiraAntes" class="form-control" placeholder="Expira antes de...">
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-primary" type="submit">Filtrar</button>
+                </div>
+              </form>
+              <table id="example3" class="display" style="min-width: 845px">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Usuario</th>
+                    <th>Licencia</th>
+                    <th>Inicio</th>
+                    <th>Expira</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% licencias.forEach(l => { %>
+                    <tr>
+                      <td><%= l.usuario %></td>
+                      <td><%= l.license_key %></td>
+                      <td><%= l.fecha_inicio.toISOString().split('T')[0] %></td>
+                      <td><%= l.fecha_fin.toISOString().split('T')[0] %></td>
+                      <td>
+                        <% if (!l.activa) { %>
+                          <span class="badge bg-danger">Inactiva</span>
+                        <% } else if (new Date() > l.fecha_fin) { %>
+                          <span class="badge bg-warning text-dark">Expirada</span>
+                        <% } else { %>
+                          <span class="badge bg-success">Activa</span>
+                        <% } %>
+                      </td>
+                      <td>
+                        <% if (l.activa) { %>
+                          <form action="/admin/licencias/desactivar/<%= l.id %>" method="POST" style="display:inline;">
+                            <button class="btn btn-sm btn-danger">Desactivar</button>
+                          </form>
+                        <% } %>
+                        <form action="/admin/licencias/renovar/<%= l.id %>" method="POST" style="display:inline;">
+                          <button class="btn btn-sm btn-warning">Renovar</button>
+                        </form>
+                      </td>
+                    </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+        </div>
+      </div>
+    </div>
+
+<!-- 
+<form id="formLicencia">
+  <label for="user_id">ID Usuario:</label>
+  <input type="number" id="user_id" name="user_id" required><br><br>
+
+  <label for="fecha_inicio">Fecha inicio:</label>
+  <input type="date" id="fecha_inicio" name="fecha_inicio" required><br><br>
+
+  <label for="fecha_fin">Fecha fin:</label>
+  <input type="date" id="fecha_fin" name="fecha_fin" required><br><br>
+
+  <button type="submit">Generar Licencia</button>
+</form>
+
+<div id="resultado"></div>
+
+<script>
+  document.getElementById('formLicencia').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const user_id = document.getElementById('user_id').value;
+    const fecha_inicio = document.getElementById('fecha_inicio').value;
+    const fecha_fin = document.getElementById('fecha_fin').value;
+
+    const res = await fetch('/licencias/crear', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ user_id, fecha_inicio, fecha_fin })
+    });
+
+    const data = await res.json();
+    document.getElementById('resultado').innerText = data.mensaje + '\nLicencia: ' + (data.licencia?.license_key || '');
+  });
+</script> -->

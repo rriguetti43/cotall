@@ -1,0 +1,56 @@
+<div class="authincation h-100">
+    <div class="container h-100">
+        <div class="row justify-content-center h-100 align-items-center">
+            <div class="col-md-6">
+                <div class="authincation-content">
+                    <div class="row no-gutters">
+                        <div class="col-xl-12">
+                            <div class="auth-form">
+                                <div class="text-center mb-3">
+                                    <a href="index.html"><img src="images/logo-dark.png" class="dark-login" alt=""></a>
+                                    <a href="index.html"><img src="images/logo-white.png" class="light-login" alt=""></a>
+                                </div>
+                                <h4 class="text-center mb-4">Registra una cuenta</h4>
+                                <form action="/api/auth/registro" method="POST">
+                                    <div class="mb-3">
+                                        <label class="mb-1"><strong>Usuario</strong></label>
+                                        <input type="text" class="form-control" placeholder="Usuario" id="usuario" name="usuario">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="mb-1"><strong>Email</strong></label>
+                                        <input type="email" class="form-control" placeholder="hello@example.com" id="email" name="email">
+                                    </div>
+                                   <div class="mb-3 position-relative">
+                                        <label class="mb-1"><strong>Password</strong></label>
+                                        <input type="password" id="dz-password" class="form-control" value="123456" id="password" name="password">
+                                        <span class="show-pass eye">
+                                        
+                                            <i class="fa fa-eye-slash"></i>
+                                            <i class="fa fa-eye"></i>
+                                        
+                                        </span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="mb-1"><strong>Nombres</strong></label>
+                                        <input type="text" class="form-control" placeholder="nombres" id="nombres" name="nombres">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="mb-1"><strong>Apellidos</strong></label>
+                                        <input type="text" class="form-control" placeholder="Apellidos" id="apellidos" name="apellidos">
+                                    </div>
+                                    <div class="text-center mt-4">
+                                        <button type="submit" class="btn btn-primary btn-block">Registrarme</button>
+                                        <!-- <a class="btn btn-primary btn-block" href="/compania/registroCia">Registrar mi Empresa</a> -->
+                                    </div>
+                                </form>
+                                <div class="new-account mt-3">
+                                    <p>¿Ya tienes una cuenta? <a class="text-primary" href="/">Ingresar</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,184 @@
+/* Reset de márgenes y paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Diseño de contenedor principal */
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  /* Estilo para el menú horizontal (superior) */
+  header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    align-items: center;
+  }
+  
+  /* Estilo para el logo */
+  .logo {
+    flex: 1;
+  }
+  
+  #logo-img {
+    height: 40px;
+    width: auto;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  #username {
+    margin-right: 10px;
+  }
+  
+  button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #e60000;
+  }
+  
+  /* Estilo para el menú vertical (izquierda) */
+  .vertical-menu {
+    width: 200px;
+    background-color: #f4f4f4;
+    height: calc(100vh - 50px);
+    position: fixed;
+    top: 50px;
+    left: 0;
+    padding-top: 20px;
+  }
+  
+  .vertical-menu ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .vertical-menu li {
+    margin: 15px 0;
+  }
+  
+  .vertical-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    padding: 10px 20px;
+    display: block;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .vertical-menu a:hover {
+    background-color: #ff4d4d;
+    color: white;
+  }
+  
+  /* Estilo para el contenido principal */
+  .main-content {
+    margin-left: 220px;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 18px;
+  }
+  
+  /* Media query para pantallas más pequeñas (móviles) */
+  @media screen and (max-width: 768px) {
+    /* Cambiar el layout de la barra superior y menú */
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 15px 20px;
+    }
+  
+    .logo {
+      margin-bottom: 10px; /* Separación para el logo en móviles */
+    }
+  
+    .user-info {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+    }
+  
+    /* Menú vertical: oculto en dispositivos móviles */
+    .vertical-menu {
+      position: relative;
+      width: 100%;
+      height: auto;
+      background-color: #f4f4f4;
+      padding-top: 0;
+      margin-top: 20px;
+    }
+  
+    .vertical-menu ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      width: 100%;
+    }
+  
+    .vertical-menu li {
+      margin: 0;
+    }
+  
+    .vertical-menu a {
+      font-size: 16px;
+      padding: 10px;
+    }
+  
+    .main-content {
+      margin-left: 0;
+      padding: 10px;
+    }
+  }
+  
+  /* Media query para pantallas muy pequeñas (por ejemplo, móviles en modo retrato) */
+  @media screen and (max-width: 480px) {
+    header {
+      padding: 10px 15px;
+    }
+  
+    #logo-img {
+      height: 30px;
+    }
+  
+    .vertical-menu ul {
+      flex-direction: column;
+    }
+  
+    .vertical-menu a {
+      padding: 10px;
+      font-size: 14px;
+    }
+  
+    .main-content {
+      padding: 10px;
+    }
+  }
+  
+
+  

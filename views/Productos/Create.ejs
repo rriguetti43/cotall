@@ -1,0 +1,94 @@
+<div class="row page-titles">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="javascript:void(0)">App</a></li>
+    <li class="breadcrumb-item  active"><a href="/productos">Productos</a></li>
+  </ol>
+</div>
+
+<div class="col-xl-12 col-lg-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Crear Producto</h4>
+    </div>
+    <div class="card-body">
+      <div class="basic-form">
+        <form action="/productos/create" method="POST" enctype="multipart/form-data">
+
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Tipo Producto</label>
+              <select id="tipo" name="tipo" class="default-select form-control wide">
+                <option value="1">Simple</option>
+                <option value="2">Variado</option>
+                <option value="3">Grupo</option>
+                <option value="4">Servicio</option>
+                <option value="5">Virtual</option>
+              </select>
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Titulo</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Descripcion del producto</label>
+              <textarea class="form-control" rows="9" id="descripcion" name="descripcion"></textarea>
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Codigo SKU</label>
+              <input type="text" class="form-control" id="codigo" name="codigo" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Categoria</label>
+              <select id="idcat" name="idcat" class="default-select form-control wide">
+                <% categorias.forEach(categoria=> { %>
+                  <option value="<%= categoria.id %>">
+                    <%= categoria.nombre %>
+                  </option>
+                  <% }); %>
+              </select>
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Marca</label>
+              <select id="idmar" name="idmar" class="default-select form-control wide">
+                <option value="0">Sin Marca</option>
+                <% marcas.forEach(marca=> { %>
+                  <option value="<%= marca.id %>">
+                    <%= marca.nombre %>
+                  </option>
+                  <% }); %>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Precio lista</label>
+              <input type="text" class="form-control" id="precio" name="precio" required>
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Precio oferta</label>
+              <input type="text" class="form-control" id="preciorebaja" name="preciorebaja">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Stock</label>
+              <input type="text" class="form-control" id="stock" name="stock">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label class="form-label">% impuesto IGV</label>
+              <input type="text" class="form-control" id="impuesto" name="impuesto">
+            </div>
+          </div>
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label class="form-label">Imagen del producto</label>
+              <input class="form-control" type="file" id="imagen" name="imagen">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Crear Cliente</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,137 @@
+<div class="authincation h-100">
+    <div class="container h-100">
+        <div class="row justify-content-center h-100 align-items-center">
+            <div class="col-md-6">
+                <div class="authincation-content">
+                    <div class="row no-gutters">
+                        <div class="col-xl-12">
+                            <div class="auth-form">
+                                <div class="text-center mb-3">
+                                    <a href="index.html"><img src="images/logo-dark.png" class="dark-login" alt=""></a>
+                                    <a href="index.html"><img src="images/logo-white.png" class="light-login"
+                                            alt=""></a>
+                                </div>
+                                <h4 class="text-center mb-4">Ahora Registra tu Empresa (CIA)</h4>
+                                <form action="/compania/createregistroCia/<%= userid %>" method="post">
+                                    <input type="text" value="<%= userid %>" id="userid" name="userid">
+                                    <input type="text" value="P" id="tipovig" name="tipovig">
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <label class="mb-1"><strong>Linea de Negocio : </strong></label>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" value="1" id="indprd" name="indprd" checked>Productos
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" value="1" id="indser" name="indser">Servicios
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mb-3">
+                                            <label class="mb-1"><strong>Nombre o Razon Social CIA</strong></label>
+                                            <input type="text" class="form-control" placeholder="Nombre o Razon Social" id="nombre" name="nombre">
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="mb-1"><strong>RUC CIA</strong></label>
+                                            <input type="text" class="form-control" placeholder="Documento CIA" id="documento" name="documento">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="mb-1"><strong>Telefonos CIA</strong></label>
+                                            <input type="text" class="form-control" placeholder="Teléfono" id="telefono" name="telefono">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <label class="mb-1"><strong>Direccion CIA</strong></label>
+                                            <input type="text" class="form-control" placeholder="Dirección" id="direccion" name="direccion">
+                                        </div>
+                                        <div class="col-md-12 mb-3">
+                                            <label class="mb-1"><strong>Email</strong></label>
+                                            <input type="email" class="form-control" placeholder="hello@example.com" id="email" name="email">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <label class="mb-1"><strong>Rubro Industrial</strong></label>
+                                            <select class="dropdown-groups" id="idrub" name="idrub">
+                                                <% rubros.forEach(rubro=> { %>
+                                                    <optgroup label="<%=rubro.nombre %>">
+                                                        
+                                                        <% rubrosh.forEach(rubrohijo=> { %>
+                                                            <% if(rubrohijo.idpadre==rubro.id) { %>
+                                                            <option value="<%= rubrohijo.id %>"><%= rubrohijo.nombre %></option>
+                                                            <% }%>
+                                                        <% }); %>
+                                                        <option valule="0">Otros</option>
+                                                    </optgroup>
+                                                <% }); %>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label class="mb-1"><strong>% de IGV</strong></label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-text">
+                                                    <input type="checkbox" id="indimp" name="indimp" value="1">
+                                                </div>
+                                                <input type="text" class="form-control" value="0.00" id="mtoimp" name="mtoimp" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="mb-4">
+                                        <h4 class="card-title">Omitir este paso</h4>
+                                        <p>Como <code>administrador</code> de la aplicacion, podras <code>Registrar</code> tu empresa en configuracón del sistema.</p>
+                                        <p>ir a <a class="text-primary" href="/">Ingresar</a></p>
+                                    </div> -->
+                                    <div class="text-center mt-4">
+                                        <button type="submit" class="btn btn-primary btn-block">Registrar mi Empresa -></button>
+                                        <!-- <a class="btn btn-primary btn-block" href="/compania/registroCia">Guardar datos de empresa</a> -->
+                                    </div>
+                                    
+                                    <!-- <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="mb-1"><strong>Nro de Colaboradores</strong></label>
+                                            <input type="text" class="form-control" placeholder="Colaboradores">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="mb-1"><strong>Tipo de Vigencia</strong></label>
+                                            <select class="default-select form-control wide mb-3">
+                                                <option>Anual</option>
+                                                <option>Mensual</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="mb-1"><strong>Inicio de Vigencia</strong></label>
+                                            <input type="text" class="form-control" placeholder="Inicio de Vigencia" disabled>
+                                        </div>
+                                    </div> -->
+                                </form>
+                                <!-- <div class="new-account mt-3">
+                                    <p>¿Ya tienes una cuenta? <a class="text-primary"
+                                            href="/">Ingresar</a></p>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("indimp").addEventListener("change", function () {
+        const campoTexto = document.getElementById("mtoimp");
+        campoTexto.disabled = !this.checked; // Habilita si está marcado, deshabilita si no
+
+        //document.getElementById("fechavig").disabled = true;
+    });
+
+</script>
