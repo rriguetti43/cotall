@@ -179,7 +179,8 @@ exports.editCompania = (req, res) => {
   compania.imagen = imagenUrl;
   companias.update(res.locals.idcia, compania, (err) => {
     if (err) {
-      return res.status(500).send("Error al actualizar cliente");
+      console.log('Error al actualizar compania' + err);
+      return res.status(500).send("Error al actualizar compania");
     }
     companias.getById(res.locals.idcia, (err, compania) => {
       if (err) {
