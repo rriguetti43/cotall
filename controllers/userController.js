@@ -33,10 +33,10 @@ exports.createUsuario = (req, res) => {
 exports.getAllUser = (req, res) => {
   //console.log('compañia:' + res.locals.idcia);
   //const { idcia } = res.locals.idcia;
-  //console.log('idcia:' + idcia);
+  console.log(res.locals.idcia);
   Usuario.getAll(res.locals.idcia, (err, users) => {
     if (err) {
-      return res.status(500).send("Error al obtener usuarios");
+      return res.status(500).send("Error al obtener usuarios " + err);
     }
     res.render("usuarios/index", { users });
   });
