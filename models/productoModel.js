@@ -12,7 +12,7 @@ class Producto {
                     when 4 then 'Servicio'
                     when 5 then 'Virtual'
                 end as tipop    
-                FROM Productos a 
+                FROM productos a 
                 left join categorias b on a.idcat=b.id
                 where a.idcia = ?
                 order by id desc`

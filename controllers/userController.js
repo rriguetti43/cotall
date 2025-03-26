@@ -36,7 +36,7 @@ exports.getAllUser = (req, res) => {
   console.log(res.locals.idcia);
   Usuario.getAll(res.locals.idcia, (err, users) => {
     if (err) {
-      console.log("Error al obtener usuarios " + err);
+      console.error("Error al obtener usuarios " + err);
       return res.status(500).send("Error al obtener usuarios " + err);
     }
     res.render("usuarios/index", { users });

@@ -6,7 +6,7 @@ exports.getAllPoductos = (req, res) => {
   console.log(res.locals.idcia);
   Producto.getAll(res.locals.idcia, (err, productos) => {
     if (err) {
-      console.log("Error al obtener productos " + err);
+      console.error("Error al obtener productos " + err);
       return res.status(500).send("Error al obtener Productos " + err);
     }
     

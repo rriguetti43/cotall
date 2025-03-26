@@ -8,7 +8,7 @@ exports.getAllClientes = (req, res) => {
   console.log(res.locals.idcia);
   Cliente.getAll(res.locals.idcia, (err, clientes) => {
     if (err) {
-      console.log("Error al obtener clientes " + err);
+      console.error("Error al obtener clientes " + err);
       return res.status(500).send("Error al obtener clientes " + err);
     }
     res.render("clientes/index", { clientes });
