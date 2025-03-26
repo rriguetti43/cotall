@@ -5,10 +5,11 @@ const Tablas = require('../models/tablasModel');
 exports.getAllClientes = (req, res) => {
   //console.log('compañia:' + res.locals.idcia);
   //const { idcia } = res.locals.idcia;
-  //console.log('idcia:' + idcia);
+  console.log(res.locals.idcia);
   Cliente.getAll(res.locals.idcia, (err, clientes) => {
     if (err) {
-      return res.status(500).send("Error al obtener clientes");
+      console.log("Error al obtener clientes " + err);
+      return res.status(500).send("Error al obtener clientes " + err);
     }
     res.render("clientes/index", { clientes });
   });

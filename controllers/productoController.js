@@ -3,9 +3,11 @@ const Producto = require('../models/productoModel');
 const Tablas = require('../models/tablasModel');
 
 exports.getAllPoductos = (req, res) => {
+  console.log(res.locals.idcia);
   Producto.getAll(res.locals.idcia, (err, productos) => {
     if (err) {
-      return res.status(500).send("Error al obtener Productos");
+      console.log("Error al obtener productos " + err);
+      return res.status(500).send("Error al obtener Productos " + err);
     }
     
     res.render("productos/index", { productos });
