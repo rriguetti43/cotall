@@ -94,6 +94,7 @@ app.use('/admin', adminRoutes);
 
 // Ruta para la página de inicio (login)
 app.get('/', (req, res) => {
+  console.log('App funcionando');
   res.render('login', { layout: 'layouts/layoutLog', errorMessage: null });  // Renderiza la vista 'login.ejs'
 });
 
